@@ -1,6 +1,6 @@
 # myLibrary API
 
-The myLibrary API is a RESTful web service designed to manage library resources. It provides endpoints for managing books, clients, and loans within the myLibrary system.
+The myLibrary API is a RESTful web service designed to manage library resources for the myLibrary project. It provides endpoints for managing books, clients, and loans within the myLibrary system.
 ## Preview
 
 Please note that this project is not finished, not operational, and serves as a preview of potential future features. It also showcases backend development skills.
