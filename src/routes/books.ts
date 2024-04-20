@@ -17,6 +17,10 @@ interface ICreateBookRequest extends Request {
   };
 }
 
+router.get("/test", (req: Request, res: Response) => {
+  res.status(200).json({message: "booksWorking"})
+})
+
 router.post("/", async (req: ICreateBookRequest, res: Response) => {
   const { title, authors, genres, isbn, picture } = req.body;
   console.log("genres", genres);
