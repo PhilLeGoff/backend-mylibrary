@@ -11,14 +11,12 @@ router.put("/", async (req: Request, res: Response) => {
   const { bookTitle, clientName, bookNumber } = req.body;
 
   try {
-    console.log(bookTitle, clientName, bookNumber, "fuck")
 
     const bookFound = await Book.findOne({
       title: bookTitle,
       bookNumber: bookNumber,
     });
     if (!bookFound) {
-        console.log("why")
       return res
         .status(404)
         .json({ success: false, message: "Book not found." });
@@ -59,7 +57,6 @@ router.put("/", async (req: Request, res: Response) => {
 
 router.put("/delete", async (req: Request, res: Response) => {
   const bookId = req.body.bookId
-  console.log('bookId', bookId)
 
   try {
     const updatedBook = await Book.findOneAndUpdate(
@@ -67,8 +64,6 @@ router.put("/delete", async (req: Request, res: Response) => {
       { $set: { loan: null } },
       { new: true }
     );
-
-    console.log("updatedbook",updatedBook)
 
     if (!updatedBook) {
       return res
@@ -78,7 +73,7 @@ router.put("/delete", async (req: Request, res: Response) => {
 
     }
 
-    const updatedClient = await Client.updateOne(
+    await Client.updateOne(
         { booksLoaned: bookId },
         { $pull: { booksLoaned: bookId } }
       );

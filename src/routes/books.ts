@@ -23,7 +23,6 @@ router.get("/test", (req: Request, res: Response) => {
 
 router.post("/", async (req: ICreateBookRequest, res: Response) => {
   const { title, authors, genres, isbn, picture } = req.body;
-  console.log("genres", genres);
 
   try {
     const authorIds = [];
@@ -39,7 +38,6 @@ router.post("/", async (req: ICreateBookRequest, res: Response) => {
     const bookNumber = await Book.find({ isbn }).then(
       (books) => books.length + 1
     );
-    console.log("book", bookNumber);
 
     const newBook = await Book.create({
       title,
@@ -81,7 +79,6 @@ router.post("/", async (req: ICreateBookRequest, res: Response) => {
 
 router.get("/:option/:input", async (req: Request, res: Response) => {
   const { option, input } = req.params;
-  console.log(option, input, "tagranmere");
 
   try {
     let query = {};
@@ -126,7 +123,6 @@ router.get("/:option/:input", async (req: Request, res: Response) => {
       bookNumber: book.bookNumber,
       available: book.loan === null ? true : false,
     }));
-    console.log("booksData", booksData);
     return res.status(200).json({ success: true, books: booksData });
   } catch (error) {
     console.error("Error finding books:", error);
